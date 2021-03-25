@@ -11,12 +11,11 @@ class PostController extends Controller
     {
         
         $posts = Post::All();
-        dump($posts);
-
-        $data = [
-            'posts' -> $posts
-        ];
         
+        $data = [
+            'posts' => $posts
+        ];
+    
         return view('guest.post.index', $data);
     }
 }

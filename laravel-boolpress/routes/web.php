@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index')->name('guest-home');
-Route::get('/post', 'PostController@index')->name('guest.post.index'); // non faccio le resources perchè un utente non loggato non dovrà fare operazioni, ma solamente visualizzazione
+Route::get('/posts', 'PostController@index')->name('guest.post.index'); // non faccio le resources perchè un utente non loggato non dovrà fare operazioni, ma solamente visualizzazione
 
 Auth::routes();
 
