@@ -18,6 +18,8 @@ class PostSeeder extends Seeder
             $newPost = new Post();
             $newPost->title = 'esempio-post';
             $newPost->content = $faker->paragraph(2);
+            $newPost->user_id = 1;
+
 
             $slug = Str::of($newPost->title);// dichiaro la costruzione base dello slug
             $primoSlug = $slug; // mi salvo lo slug creato
