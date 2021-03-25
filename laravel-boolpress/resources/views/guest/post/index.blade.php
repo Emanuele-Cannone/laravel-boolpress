@@ -13,7 +13,7 @@
                 <h5 class="card-title">{{ $item->user->name }}</h5>
                 <h5 class="card-title">{{ $item->slug }}</h5>
                 <p class="card-text">{{ $item->content }}</p>
-                <a href="#" class="btn btn-primary">Dettaglio post</a>
+                <a href="{{ route('guest.post.show', $item->id ) }}" class="btn btn-primary">Dettaglio post</a>
             </div>
             </div>
         </div>
