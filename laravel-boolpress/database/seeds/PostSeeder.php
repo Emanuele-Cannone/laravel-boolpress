@@ -21,7 +21,7 @@ class PostSeeder extends Seeder
             $newPost->user_id = 1;
 
 
-            $slug = Str::of($newPost->title);// dichiaro la costruzione base dello slug
+            $slug = Str::slug($newPost->title);// dichiaro la costruzione base dello slug
             $primoSlug = $slug; // mi salvo lo slug creato
             
             
@@ -31,7 +31,7 @@ class PostSeeder extends Seeder
             
             
             while ($postEsistente) { // se esiste un post con uno slug uguale
-                $slug = $primoSlug . ' - ' .$contatore; // costruisco uno slug concatenando lo slug creato . - . numerocrescente
+                $slug = $primoSlug.'-'.$contatore; // costruisco uno slug concatenando lo slug creato . - . numerocrescente
                 $postEsistente = post::where('slug', $slug)->first(); // lo assegno al PRIMO post uguale 
                 $contatore++; // aumento il numero
             }

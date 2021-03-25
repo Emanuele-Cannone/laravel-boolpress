@@ -19,10 +19,10 @@ class PostController extends Controller
         return view('guest.post.index', $data);
     }
 
-    public function show($id)
+    public function show($slug)
     {
         
-        $posts = Post::find($id);
+        $posts = Post::where('slug', $slug)->first();
         
         $data = [
             'item' => $posts
