@@ -16,8 +16,8 @@ class CreateTagsTable extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('post_id')->constrained();
+            $table->string('name');
+            $table->string('slug')->unique();
 
             $table->timestamps();
         });
@@ -31,11 +31,6 @@ class CreateTagsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('tags');
-        Schema::table('tags', function (Blueprint $table) {
-            $table->dropForeign('posts_user_id_foreign');// questo cancella la relazione
-            $table->dropForeign('users_user_id_foreign');// questo cancella la relazione
-            $table->dropcolumn('post_id'); // questo cancella la colonna
-            $table->dropcolumn('user_id'); // questo cancella la colonna
-        });
+        
     }
 }
