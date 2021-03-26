@@ -21,7 +21,7 @@
                     <td>{{ $item->user->name }}</td>
                     <td>{{ $item->slug }}</td>
                     <td>{{ $item->content }}</td>
-                    <td><a href="{{ route('guest.post.show', $item->slug ) }}" class="btn btn-info">Dettaglio post</a></td>
+                    <td><a href="{{ route('post.show', $item->slug ) }}" class="btn btn-info">Dettaglio post</a></td>
                 </tr>
             </tbody>
             @endforeach

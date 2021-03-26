@@ -3,6 +3,7 @@
 
 
 @section('content')
+
 <div class="container">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
@@ -13,4 +14,11 @@
     </div>
 </div>
     
+
 @endsection
+
+
+
+
+
+
