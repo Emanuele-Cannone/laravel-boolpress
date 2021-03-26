@@ -12,4 +12,9 @@ class post extends Model
 
         return $this->belongsTo('App\User');// questa è la relazione molti a uno 
     }
+
+    public function tags(){
+
+        return $this->belongsToMany('App\Tag');// questa è la relazione molti a molti 
+    }
 }
