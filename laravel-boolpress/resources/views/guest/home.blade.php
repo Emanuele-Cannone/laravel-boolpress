@@ -68,8 +68,8 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/admin') }}">Admin</a>
-                        <a href="{{ url('/posts') }}">vedi i post</a>
+                        <a href="{{ route('post.index') }}">Gestisci i tuoi post</a>
+                        <a href="{{ route('guest.post.index') }}">vedi tutti i post</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
