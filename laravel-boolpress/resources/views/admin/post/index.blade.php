@@ -1,16 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>io sono la pagina index di admin</h1>
     <div class="container">
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Azioni
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Nuovo Post</a>
+  </div>
+</div>
         <table class="table">
             <thead>
                 <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
-                <th scope="col">Content</th>
                 <th scope="col">Slug</th>
+                <th scope="col">Content</th>
                 <th scope="col">Info</th>
                 </tr>
             </thead>
