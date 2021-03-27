@@ -23,13 +23,13 @@ class TagSeeder extends Seeder
             
             
             
-            $tagEsistente = tag::where('slug', $slug)->first();// prendo il primo post con lo slug uguale ad altri (nel caso esista)
+            $tagEsistente = Tag::where('slug', $slug)->first();// prendo il primo post con lo slug uguale ad altri (nel caso esista)
             $contatore = 1; // inizializzo la variabile a 0
             
             
             while ($tagEsistente) { // se esiste un post con uno slug uguale
                 $slug = $primoSlug.'-'.$contatore; // costruisco uno slug concatenando lo slug creato . - . numerocrescente
-                $tagEsistente = tag::where('slug', $slug)->first(); // lo assegno al PRIMO post uguale 
+                $tagEsistente = Tag::where('slug', $slug)->first(); // lo assegno al PRIMO post uguale 
                 $contatore++; // aumento il numero
             }
             
