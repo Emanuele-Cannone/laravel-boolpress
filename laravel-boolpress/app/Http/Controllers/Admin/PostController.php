@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use App\Post;
 
 class PostController extends Controller
@@ -30,7 +32,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.post.create');
     }
 
     /**
@@ -41,7 +43,34 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->all();
+
+        $newPost = new Post();
+
+        $newPost->user_id = Auth::user()->id;
+        $newPost->fill($data);
+        $slug = Str::slug($newPost->title);// dichiaro la costruzione base dello slug
+        $primoSlug = $slug; // mi salvo lo slug creato
+        
+        
+        
+        $postEsistente = post::where('slug', $slug)->first();// prendo il primo post con lo slug uguale ad altri (nel caso esista)
+        $contatore = 1; // inizializzo la variabile a 0
+            
+            
+        while ($postEsistente) { // se esiste un post con uno slug uguale
+            $slug = $primoSlug.'-'.$contatore; // costruisco uno slug concatenando lo slug creato . - . numerocrescente
+            $postEsistente = post::where('slug', $slug)->first(); // lo assegno al PRIMO post uguale 
+            $contatore++; // aumento il numero
+        }
+            
+        $newPost->slug = $slug; // assegno lo slug 
+
+        $newPost->save();
+
+        return redirect()->route('post.index', $data);
+
     }
 
     /**
