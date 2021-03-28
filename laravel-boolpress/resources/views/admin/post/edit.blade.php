@@ -28,10 +28,20 @@
     <div class="mb-3">
 
       <label for="campo-titolo" class="form-label">Titolo</label>
-      <input class="form-control" type="text" id="campo-titolo" name="slug" value={{ $item->slug }}>
+      <input class="form-control" type="text" id="campo-titolo" name="title" value={{ $item->title }}>
 
       <label for="campo-content" class="form-label">Corpo</label>
       <textarea class="form-control" id="campo-content" rows="3" name="content" >{{ $item->content }}</textarea>
+
+      @foreach ($tags as $tag)
+      <div class="form-check">
+        <label class="form-check-label" for="defaultCheck1">
+        <input class="form-check-input" type="checkbox" name="tags[]" id="defaultCheck1" value="{{ $tag->id }}" {{ $item->tags->contains($tag->id) ? 'checked' : '' }}>
+          {{ $tag->slug }}  
+          {{-- devi inserire il nome e non lo slug, ho messo lo slug perchè i nomi sono tutti uguali --}}
+        </label>
+      </div>
+      @endforeach
 
       <button class="btn btn-success mt-3">Aggiorna</button>
     </div>

@@ -35,16 +35,21 @@
       <label class="form-label">User Name</label>
       <input class="form-control  mb-2" disabled="true" type="text" value={{ Auth::user()->name }}>
 
-      <label for="campo-slug" class="form-label">Slug</label>
-      <input class="form-control  mb-2" type="text" id="campo-slug" name="slug">
-
       <label for="campo-titolo" class="form-label">Titolo</label>
       <input class="form-control  mb-2" type="text" id="campo-titolo" name="title">
 
       <label for="campo-content" class="form-label">Corpo</label>
       <textarea class="form-control  mb-2" id="campo-content" rows="3" name="content" ></textarea>
 
-
+      @foreach ($tags as $tag)
+      <div class="form-check">
+        <label class="form-check-label" for="defaultCheck1">
+        <input class="form-check-input" type="checkbox" name="tags[]" id="defaultCheck1" value='{{ $tag->id }}'>
+          {{ $tag->slug }}  
+          {{-- devi inserire il nome e non lo slug, ho messo lo slug perchè i nomi sono tutti uguali --}}
+        </label>
+      </div>
+      @endforeach
 
       <button class="btn btn-success mt-3">Crea Post</button>
 </form>

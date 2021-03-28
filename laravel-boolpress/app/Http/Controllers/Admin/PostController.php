@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Post;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -32,7 +33,13 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.create');
+        $tags = Tag::all();
+
+        $data = [
+            'tags' => $tags
+        ];
+
+        return view('admin.post.create', $data);
     }
 
     /**
@@ -67,7 +74,15 @@ class PostController extends Controller
             
         $newPost->slug = $slug; // assegno lo slug 
 
+        
+        
+
         $newPost->save();
+
+        
+        if(array_key_exists('tags', $data)){
+            $newPost->tags()->sync($data['tags']); // va qui perchè i tags hanno una chiave associativa in relazione che viene creata solamente dopo il salvataggio
+        }
 
         return redirect()->route('post.index', $data);
 
@@ -99,7 +114,9 @@ class PostController extends Controller
     public function edit($post)
     {
         $post = Post::where('slug', $post)->first();
+        $tags = Tag::all();
         $data = [
+            'tags' => $tags,
             'item' => $post
         ];
 
@@ -121,6 +138,9 @@ class PostController extends Controller
         $data = $request->all();
 
         $post->update($data);
+         if(array_key_exists('tags', $data)){
+            $post->tags()->sync($data['tags']); // va qui perchè i tags hanno una chiave associativa in relazione che viene creata solamente dopo il salvataggio
+        }
 
         return redirect()->route('post.index', $post);
 
@@ -134,6 +154,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->tags()->sync([]);
         $post->delete();
 
         return redirect()->route('post.index');
