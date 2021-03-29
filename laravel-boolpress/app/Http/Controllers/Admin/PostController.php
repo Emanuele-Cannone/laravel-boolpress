@@ -5,6 +5,8 @@ use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+Use Illuminate\Support\Facades\Storage;
+
 
 use App\Post;
 use App\Tag;
@@ -37,10 +39,11 @@ class PostController extends Controller
     public function create()
     {
         $tags = Tag::all();
-
+        
         $data = [
             'tags' => $tags
         ];
+        
 
         return view('admin.post.create', $data);
     }
@@ -59,6 +62,8 @@ class PostController extends Controller
         $newPost = new Post();
 
         $newPost->user_id = Auth::user()->id;
+        $cover_path = Storage::put('posts_covers' ,$data['image']);
+        $data['cover'] = $cover_path;
         $newPost->fill($data);
         $slug = Str::slug($newPost->title);// dichiaro la costruzione base dello slug
         $primoSlug = $slug; // mi salvo lo slug creato
@@ -140,10 +145,14 @@ class PostController extends Controller
         
         $data = $request->all();
 
+        $cover_path = Storage::put('posts_covers' ,$data['image']);
+        $data['cover'] = $cover_path;
         $post->update($data);
         if(array_key_exists('tags', $data)){
             $post->tags()->sync($data['tags']); // va qui perchè i tags hanno una chiave associativa in relazione che viene creata solamente dopo il salvataggio
         }
+
+
 
         return redirect()->route('post.index', $post);
 

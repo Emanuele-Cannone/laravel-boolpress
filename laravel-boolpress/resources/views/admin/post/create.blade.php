@@ -24,7 +24,7 @@
 </div>
 
 <div class="container">
-  <form action="{{route('post.store')}}" method="post">
+  <form action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
     @csrf
 
     @method('POST')
@@ -40,6 +40,9 @@
 
       <label for="campo-content" class="form-label">Corpo</label>
       <textarea class="form-control  mb-2" id="campo-content" rows="3" name="content" ></textarea>
+
+      <label for="immagine"> Carica Immagine </label>
+      <input type="file" class="form-control-file" id="immagine" name="image">
 
       @foreach ($tags as $tag)
       <div class="form-check">

@@ -28,6 +28,7 @@
             <th scope="col">ID</th>
             <th scope="col">Autore</th>
             <th scope="col">Titolo</th>
+            <th scope="col">Immagine</th>
             <th scope="col">Tag</th>
             <th scope="col">Creato il</th>
             <th scope="col">Dettagli</th>
@@ -41,6 +42,7 @@
               {{-- <td>{{ $item->user->id }}</td> --}}
               <td>{{ $item->title }}</td>
               {{-- <td>{{ $item->tags }}</td> --}}
+              <td><img src=" {{ asset('storage/'.$item->cover) }}" alt=""></td>
               <td>
                 @foreach ($tags as $tag)
                     @if ( $item->tags->contains($tag->id) == 'checked')

@@ -29,6 +29,7 @@
       <div class="card-body">
         <h5 class="card-title">{{ $item->slug }}</h5>
         <p class="card-text">{{ $item->content }}</p>
+        <img src=" {{ asset('storage/'.$item->cover) }}" alt="">
         <div class="mt-3">
           <a href="{{ route('post.edit', $item->slug) }}"><button class="btn btn-warning">Modifica</button></a>
           <form class="d-inline" action="{{ route('post.destroy', $item->id) }}" method="post">

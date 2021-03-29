@@ -7,7 +7,7 @@ use App\Tag;
 
 class post extends Model
 {
-    protected $fillable = ['user_id', 'title', 'content', 'slug'];
+    protected $fillable = ['user_id', 'title', 'content', 'slug', 'cover'];
 
     public function user(){
 

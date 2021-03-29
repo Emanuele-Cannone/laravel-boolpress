@@ -22,7 +22,7 @@
 </div>
 
 <div class="container">
-  <form action="{{ route('post.update', $post) }}" method="POST">
+  <form action="{{ route('post.update', $post) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-3">
@@ -32,6 +32,16 @@
 
       <label for="campo-content" class="form-label">Corpo</label>
       <textarea class="form-control" id="campo-content" rows="3" name="content" >{{ $post->content }}</textarea>
+
+      <label for="immagine"> Carica Immagine </label>
+      <input type="file" class="form-control-file" id="immagine" name="image">
+
+      @if($post->cover)
+        <p> Immagine inserita <p>
+          <img src=" {{ asset('storage/'.$post->cover) }}" alt="">
+      @else
+        <p> Immagine non presente <p>
+      @endif
 
       @foreach ($tags as $tag)
       <div class="form-check">
