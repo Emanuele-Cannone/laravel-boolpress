@@ -77,7 +77,7 @@
                             <a href="{{ route('register') }}">Register</a>
                         @endif
 
-                        <a class="nav-link" href="{{ route('guest.contatti') }}">Contattaci</a>
+                        <a class="nav-link" href="{{ url('/contatti') }}">Contattaci</a>
                     @endauth
                 </div>
             @endif

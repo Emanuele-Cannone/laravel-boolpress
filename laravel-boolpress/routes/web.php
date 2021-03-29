@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('guest-home');
 Route::get('/posts', 'PostController@index')->name('guest.post.index'); // non faccio le resources perchè un utente non loggato non dovrà fare operazioni, ma solamente visualizzazione
 Route::get('/posts/{slug}', 'PostController@show')->name('guest.post.show'); // non faccio le resources perchè un utente non loggato non dovrà fare operazioni, ma solamente visualizzazione
-Route::get('/contatti','HomeController@contatti')->name('guest.contatti');
+Route::get('/contatti', 'HomeController@contatti')->name('guest.contatti');
+Route::post('/contatti', 'HomeController@contattiSent')->name('azioneInvioMessaggio');
+Route::get('/inviato', 'HomeController@contattoInviato')->name('confermaInvio');
 
 Auth::routes();
 
