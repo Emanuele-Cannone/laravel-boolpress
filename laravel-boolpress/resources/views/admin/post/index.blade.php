@@ -28,6 +28,7 @@
             <th scope="col">ID</th>
             <th scope="col">Autore</th>
             <th scope="col">Titolo</th>
+            <th scope="col">Tag</th>
             <th scope="col">Creato il</th>
             <th scope="col">Dettagli</th>
           </tr>
@@ -39,7 +40,15 @@
               <td>{{ $item->user->name }}</td>
               {{-- <td>{{ $item->user->id }}</td> --}}
               <td>{{ $item->title }}</td>
-              {{-- <td>{{ $item->slug }}</td> --}}
+              {{-- <td>{{ $item->tags }}</td> --}}
+              <td>
+                @foreach ($tags as $tag)
+                    @if ( $item->tags->contains($tag->id) == 'checked')
+                    {{ $tag->slug }}      
+                    @endif
+                @endforeach
+              </td>
+              
               {{-- <td>{{ $item->content }}</td> --}}
               <td>{{ $item->created_at }}</td>
               <td><a href="{{ route('post.show', $item->slug ) }}" class="btn btn-info">Modifica post</a></td>

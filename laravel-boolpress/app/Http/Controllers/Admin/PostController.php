@@ -19,10 +19,13 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+        $tags = Tag::all();
         
         $data = [
-            'posts' => $posts
+            'posts' => $posts,
+            'tags' => $tags
         ];
+
         return view('admin.post.index', $data);
     }
 
@@ -99,7 +102,7 @@ class PostController extends Controller
         $posts = Post::where('slug', $slug)->first();
         
         $data = [
-            'item' => $posts
+            'item' => $posts,
         ];
 
         return view('admin.post.show', $data);
@@ -117,7 +120,7 @@ class PostController extends Controller
         $tags = Tag::all();
         $data = [
             'tags' => $tags,
-            'item' => $post
+            'post' => $post
         ];
 
         return view('admin.post.edit', $data);
@@ -138,7 +141,7 @@ class PostController extends Controller
         $data = $request->all();
 
         $post->update($data);
-         if(array_key_exists('tags', $data)){
+        if(array_key_exists('tags', $data)){
             $post->tags()->sync($data['tags']); // va qui perchè i tags hanno una chiave associativa in relazione che viene creata solamente dopo il salvataggio
         }
 

@@ -22,21 +22,21 @@
 </div>
 
 <div class="container">
-  <form action="{{ route('post.update', $item) }}" method="POST">
+  <form action="{{ route('post.update', $post) }}" method="POST">
     @csrf
     @method('PUT')
     <div class="mb-3">
 
       <label for="campo-titolo" class="form-label">Titolo</label>
-      <input class="form-control" type="text" id="campo-titolo" name="title" value={{ $item->title }}>
+      <input class="form-control" type="text" id="campo-titolo" name="title" value={{ $post->title }}>
 
       <label for="campo-content" class="form-label">Corpo</label>
-      <textarea class="form-control" id="campo-content" rows="3" name="content" >{{ $item->content }}</textarea>
+      <textarea class="form-control" id="campo-content" rows="3" name="content" >{{ $post->content }}</textarea>
 
       @foreach ($tags as $tag)
       <div class="form-check">
         <label class="form-check-label" for="defaultCheck1">
-        <input class="form-check-input" type="checkbox" name="tags[]" id="defaultCheck1" value="{{ $tag->id }}" {{ $item->tags->contains($tag->id) ? 'checked' : '' }}>
+        <input class="form-check-input" type="checkbox" name="tags[]" id="defaultCheck1" value="{{ $tag->id }}" {{ $post->tags->contains($tag->id) ? 'checked' : '' }}>
           {{ $tag->slug }}  
           {{-- devi inserire il nome e non lo slug, ho messo lo slug perchè i nomi sono tutti uguali --}}
         </label>
