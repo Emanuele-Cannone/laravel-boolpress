@@ -15,7 +15,7 @@
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <a class="dropdown-item" href="{{ route('post.index') }}">Dashboard</a>
       <a class="dropdown-item" href="{{ route('guest.post.index') }}">Post</a>
-      <a class="dropdown-item" href="#">Utenti</a>
+      <a class="dropdown-item" href="{{ route('profile') }}">Info Utente</a>
       <a class="dropdown-item" href="#">Tag</a>
       <a class="dropdown-item" href="#">Categorie</a>
     </div>
